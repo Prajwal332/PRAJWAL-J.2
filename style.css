@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background-size: 600% 600%;
+  animation: gradientBG 10s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.container {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.logo {
+  font-size: 48px;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: #00d4ff;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.search-box input {
+  width: 420px;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 30px 0 0 30px;
+  border: none;
+  outline: none;
+}
+
+.search-box button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 0 30px 30px 0;
+  border: none;
+  cursor: pointer;
+  background: #00d4ff;
+  color: #000;
+}
+
+#results {
+  width: 70%;
+  margin: auto;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  text-align: left;
+  transition: transform 0.3s;
+}
+
+.result-card:hover {
+  transform: scale(1.03);
+}
+
+.result-card h3 {
+  color: #00d4ff;
+}
+
+.result-card p {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+/* ===== THEME VARIABLES ===== */
+:root {
+  --bg: #0f2027;
+  --bg2: #203a43;
+  --bg3: #2c5364;
+  --text: #ffffff;
+  --card: rgba(255,255,255,0.1);
+  --accent: #00d4ff;
+}
+
+body.light {
+  --bg: #f5f7fa;
+  --bg2: #e4e8ed;
+  --bg3: #ffffff;
+  --text: #000000;
+  --card: rgba(0,0,0,0.05);
+  --accent: #0066ff;
+}
+
+body {
+  background: linear-gradient(270deg, var(--bg), var(--bg2), var(--bg3));
+  color: var(--text);
+  transition: all 0.4s ease;
+}
+
+/* Cards */
+.result-card {
+  background: var(--card);
+}
+
+/* Logo accent */
+.logo span {
+  color: var(--accent);
+}
+
+/* Search button */
+.search-box button {
+  background: var(--accent);
+}
+
+/* ===== TOGGLE UI ===== */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.toggle-label {
+  background: var(--card);
+  border-radius: 30px;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+  user-select: none;
+}
