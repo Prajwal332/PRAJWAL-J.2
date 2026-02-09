@@ -1,0 +1,23 @@
+const query = document.getElementById("searchInput").value;
+const resultsDiv = document.getElementById("results");
+
+document.getElementById("suggestions").innerHTML = "";
+
+if (!query) return;
+
+resultsDiv.innerHTML = "<p>🔄 Searching...</p>";
+
+if (activeTab === "images") {
+  resultsDiv.innerHTML =
+    "<p>🖼 Image search coming soon...</p>";
+  return;
+}
+
+if (activeTab === "ai") {
+  resultsDiv.innerHTML =
+    `<div class="result-card">
+      <h3>AI Response</h3>
+      <p>This AI tab is ready. Connect OpenAI API to enable smart answers.</p>
+    </div>`;
+  return;
+}
