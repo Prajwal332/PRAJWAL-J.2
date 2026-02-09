@@ -106,6 +106,7 @@ function typeEffect(element, text, speed = 20) {
     if (i >= text.length) clearInterval(interval);
   }, speed);
 }
+fetch("https://api.openai.com/v1/chat/completions", ...)
 
 
 
