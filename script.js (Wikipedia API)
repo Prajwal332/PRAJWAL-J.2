@@ -57,5 +57,16 @@ document.querySelectorAll(".nav-item").forEach(item => {
     item.classList.add("active");
   });
 });
+function typeEffect(element, text, speed = 20) {
+  element.innerHTML = "";
+  let i = 0;
+
+  const interval = setInterval(() => {
+    element.innerHTML += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, speed);
+}
+
 
 
