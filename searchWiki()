@@ -21,3 +21,9 @@ if (activeTab === "ai") {
     </div>`;
   return;
 }
+// ===== IMAGES TAB =====
+if (activeTab === "images") {
+  searchImages(encodedQuery);
+  return;
+}
+const encodedQuery = encodeURIComponent(query);
