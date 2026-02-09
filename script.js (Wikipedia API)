@@ -48,3 +48,5 @@ toggle.addEventListener("change", () => {
     localStorage.setItem("theme", "dark");
   }
 });
+let activeTab = "all";
+
