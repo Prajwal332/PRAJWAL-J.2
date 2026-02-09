@@ -1,0 +1,50 @@
+async function searchWiki() {
+  const query = document.getElementById("searchInput").value;
+  const resultsDiv = document.getElementById("results");
+
+  if (!query) {
+    resultsDiv.innerHTML = "<p>Please enter something to search.</p>";
+    return;
+  }
+
+  resultsDiv.innerHTML = "<p>🔄 Searching AI knowledge...</p>";
+
+  const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    resultsDiv.innerHTML = "";
+
+    data.query.search.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "result-card";
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.snippet}...</p>
+      `;
+      resultsDiv.appendChild(card);
+    });
+
+  } catch (error) {
+    resultsDiv.innerHTML = "<p>Error fetching data.</p>";
+  }
+}
+const toggle = document.getElementById("toggleTheme");
+
+// Load saved theme
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+  toggle.checked = true;
+}
+
+toggle.addEventListener("change", () => {
+  document.body.classList.toggle("light");
+
+  if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "light");
+  } else {
+    localStorage.setItem("theme", "dark");
+  }
+});
