@@ -1,0 +1,12 @@
+function switchTab(tab) {
+  activeTab = tab;
+
+  document.querySelectorAll(".tab").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  event.target.classList.add("active");
+
+  document.getElementById("results").innerHTML =
+    `<p style="opacity:0.7">Search to see ${tab} results...</p>`;
+}
