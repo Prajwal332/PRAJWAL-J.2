@@ -1,3 +1,6 @@
+const UNSPLASH_KEY = "PASTE_YOUR_UNSPLASH_ACCESS_KEY_HERE";
+const UNSPLASH_KEY = "a1b2c3d4examplekey";
+
 const searchInput = document.getElementById("searchInput");
 
 searchInput.addEventListener("keydown", (e) => {
@@ -165,5 +168,41 @@ function typeEffect(el, text, speed = 20) {
     if (i >= text.length) clearInterval(timer);
   }, speed);
 }
+async function searchImages(query) {
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "<p>🖼 Searching images...</p>";
+
+  try {
+    const res = await fetch(
+      `https://api.unsplash.com/search/photos?query=${query}&per_page=12&client_id=${UNSPLASH_KEY}`
+    );
+
+    const data = await res.json();
+
+    if (data.results.length === 0) {
+      resultsDiv.innerHTML = "<p>No images found.</p>";
+      return;
+    }
+
+    resultsDiv.innerHTML = `<div class="image-grid"></div>`;
+    const grid = document.querySelector(".image-grid");
+
+    data.results.forEach(photo => {
+      const img = document.createElement("img");
+      img.src = photo.urls.small;
+      img.alt = photo.alt_description || "Image result";
+
+      img.onclick = () => {
+        window.open(photo.links.html, "_blank");
+      };
+
+      grid.appendChild(img);
+    });
+
+  } catch (err) {
+    resultsDiv.innerHTML = "<p>Error loading images.</p>";
+  }
+}
+
 
 
