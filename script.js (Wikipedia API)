@@ -1,3 +1,12 @@
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();           // stop form submit / reload
+    document.getElementById("suggestions").innerHTML = "";
+    searchWiki();                 // trigger search
+  }
+});
 async function searchWiki() {
   const input = document.getElementById("searchInput");
   const query = input.value.trim();
