@@ -49,6 +49,45 @@ toggle.addEventListener("change", () => {
   }
 });
 let activeTab = "all";
+if (activeTab === "ai") {
+  const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${query}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const answer = data.extract || 
+      "I couldn't find detailed information, but try refining your question.";
+
+    resultsDiv.innerHTML = `
+      <div class="ai-card">
+        <div class="ai-title">
+          <span>🤖</span>
+          AI Answer
+        </div>
+        <div id="aiText" class="typing"></div>
+      </div>
+    `;
+
+    typeEffect(
+      document.getElementById("aiText"),
+      `Here’s a simple explanation:\n\n${answer}`
+    );
+
+  } catch (e) {
+    resultsDiv.innerHTML = `
+      <div class="ai-card">
+        <div class="ai-title">
+          <span>⚠️</span>
+          AI Error
+        </div>
+        <p>Unable to generate AI response right now.</p>
+      </div>
+    `;
+  }
+  return;
+}
+
 document.querySelectorAll(".nav-item").forEach(item => {
   item.addEventListener("click", () => {
     document.querySelectorAll(".nav-item").forEach(i =>
